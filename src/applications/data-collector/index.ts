@@ -7,7 +7,11 @@ export async function main() {
 
   const earthquakes = await earthquakeAPIService.getEarthquakeData();
 
+  console.log(earthquakes.length + " earthquakes found.");
+
   earthquakes.forEach(async (earthquake) => {
     earthquakeDataGateway.create(earthquake);
   });
 }
+
+main();

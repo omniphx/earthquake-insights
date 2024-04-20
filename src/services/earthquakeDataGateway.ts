@@ -1,4 +1,5 @@
 import { Earthquake, PrismaClient } from "@prisma/client";
+import { Feature } from "../types";
 
 const prisma = new PrismaClient();
 
@@ -52,10 +53,46 @@ export class EarthquakeDataGateway {
     }
   }
 
+  public async update(earthquake: Earthquake): Promise<void> {
+    try {
+      await prisma.earthquake.updateMany({
+        where: {
+          id: {
+            equals: earthquake.id,
+          },
+        },
+        data: {
+          ...earthquake,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      await prisma.$disconnect();
+    }
+  }
+
   public async findAll(): Promise<Earthquake[]> {
     let earthquakes: Earthquake[] = [];
     try {
       earthquakes = await prisma.earthquake.findMany();
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to fetch earthquakes");
+    } finally {
+      await prisma.$disconnect();
+      return earthquakes;
+    }
+  }
+
+  public async findByCluster(clusterIndex: number): Promise<Earthquake[]> {
+    let earthquakes: Earthquake[] = [];
+    try {
+      earthquakes = await prisma.earthquake.findMany({
+        where: {
+          cluster: clusterIndex,
+        },
+      });
     } catch (error) {
       console.error(error);
       throw new Error("Failed to fetch earthquakes");

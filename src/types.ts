@@ -1,10 +1,10 @@
-type EarthquakeData = {
+export type EarthquakeData = {
   type: "FeatureCollection";
   features: Feature[];
   bbox: Number[];
 };
 
-type Feature = {
+export type Feature = {
   id: string;
   type: "Feature";
   properties: Property;
@@ -12,6 +12,7 @@ type Feature = {
 };
 
 type Property = {
+  id: string;
   mag: number;
   place: string;
   time: number;

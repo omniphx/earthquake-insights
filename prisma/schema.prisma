@@ -15,6 +15,7 @@ datasource db {
 
 model Earthquake {
   id        String   @id
+  cluster   Int?
   mag       Float?
   place     String?
   time      BigInt

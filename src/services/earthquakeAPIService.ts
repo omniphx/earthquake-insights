@@ -1,3 +1,5 @@
+import { EarthquakeData, Feature } from "../types";
+
 export class EarthquakeAPIService {
   public async getEarthquakeData(): Promise<Feature[]> {
     const response = await fetch(
