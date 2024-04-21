@@ -50,6 +50,7 @@ app.get(
   "/api/earthquakes/cluster/:clusterSize",
   async (request: Request, res: Response) => {
     try {
+      console.log("fetching...");
       const { lat, lon } = request.query; // Assuming latitude, longitude, and magnitude are passed as query parameters.
       const clusterSize = parseInt(request.params.clusterSize);
 

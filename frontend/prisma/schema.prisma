@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Earthquake {
+  id        String   @id
+  cluster   Int?
+  mag       Float?
+  place     String?
+  time      BigInt
+  updated   BigInt
+  tz        Int?
+  url       String?
+  detail    String?
+  felt      Int?
+  cdi       Float?
+  mmi       Float?
+  alert     String?
+  status    String?
+  tsunami   Int?
+  sig       Int?
+  net       String?
+  code      String?
+  ids       String?
+  sources   String?
+  types     String?
+  nst       Int?
+  dmin      Float?
+  rms       Float?
+  gap       Int?
+  magType   String?
+  type      String?
+  title     String?
+  longitude Float?
+  latitude  Float?
+  depth     Float?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+}

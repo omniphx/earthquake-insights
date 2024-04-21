@@ -1,9 +1,20 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/KtGhpkwdzXs
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-export default function Main() {
+"use client";
+
+import { useEffect } from "react";
+
+export default function Main({ data }: { data: any }) {
+  // const { data, mutate } = useMutation({
+  //   mutationKey: ["earthquakes"],
+  //   mutationFn: async () => {
+  //     const response = await fetch("/api/earthquakes");
+  //     return response.json();
+  //   },
+  // });
+
+  useEffect(() => {
+    console.log("data", data);
+  }, [data]);
+
   return (
     <div className="flex flex-col h-screen">
       <header className="bg-gray-900 text-white py-4 px-6">
@@ -52,7 +63,10 @@ export default function Main() {
           </div>
         </div>
       </header>
-      <div className="flex-1 relative" />
+      <div className="flex-1 relative">Results: {data?.length}</div>
     </div>
   );
+}
+function fetchEarthquakes() {
+  throw new Error("Function not implemented.");
 }
