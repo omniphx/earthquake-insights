@@ -1,8 +1,8 @@
-import Main from "@/components/Main";
+import Main from "../components/Main";
 
 async function getData() {
   const res = await fetch(
-    "http://localhost:3001/api/earthquakes/cluster/10?lat=37.87&lon=-122.27"
+    "/api/earthquakes/10"
     // "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
   );
   // The return value is *not* serialized
@@ -17,7 +17,7 @@ async function getData() {
 }
 
 export default async function Home() {
-  const data = await getData();
+  // const data = await getData();
 
-  return <Main data={data} />;
+  return <Main data={{}} />;
 }

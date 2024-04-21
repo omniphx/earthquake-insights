@@ -1,6 +1,6 @@
-import { EarthquakeClusterer } from "@/services/earthquakeClusterer";
-import { EarthquakeDataGateway } from "@/services/earthquakeDataGateway";
 import { NextRequest } from "next/server";
+import { EarthquakeClusterer } from "../../../../services/earthquakeClusterer";
+import { EarthquakeDataGateway } from "../../../../services/earthquakeDataGateway";
 
 const clusterer = new EarthquakeClusterer();
 const service = new EarthquakeDataGateway();

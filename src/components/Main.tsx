@@ -12,6 +12,9 @@ export default function Main({ data }: { data: any }) {
   // });
 
   useEffect(() => {
+    fetch("/api/earthquakes/10")
+      .then((res) => res.json())
+      .then((data) => console.log("data", data));
     console.log("data", data);
   }, [data]);
 
