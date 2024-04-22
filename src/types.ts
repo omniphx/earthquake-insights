@@ -45,3 +45,12 @@ type Geometry = {
   type: "Point";
   coordinates: [number, number, number];
 };
+
+export type EarthquakeMarker = {
+  id: string;
+  latitude: number;
+  longitude: number;
+  cluster: number;
+  title: string;
+  mag: number;
+};

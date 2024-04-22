@@ -85,12 +85,14 @@ export class EarthquakeDataGateway {
     }
   }
 
-  public async findByCluster(clusterIndex: number): Promise<Earthquake[]> {
+  public async findAllMinMag(minMag: number): Promise<Earthquake[]> {
     let earthquakes: Earthquake[] = [];
     try {
       earthquakes = await prisma.earthquake.findMany({
         where: {
-          cluster: clusterIndex,
+          mag: {
+            gte: minMag,
+          },
         },
       });
     } catch (error) {
