@@ -1,22 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 
-export default function Main({ data }: { data: any }) {
-  // const { data, mutate } = useMutation({
-  //   mutationKey: ["earthquakes"],
-  //   mutationFn: async () => {
-  //     const response = await fetch("/api/earthquakes");
-  //     return response.json();
-  //   },
-  // });
-
-  useEffect(() => {
-    fetch("/api/earthquakes/10")
-      .then((res) => res.json())
-      .then((data) => console.log("data", data));
-    console.log("data", data);
-  }, [data]);
+export default function Main() {
+  const { data, mutate } = useMutation({
+    mutationKey: ["earthquakes"],
+    mutationFn: async () => {
+      const result = await fetch("/api/data-analyzer/10");
+      return result.json();
+    },
+  });
 
   return (
     <div className="flex flex-col h-screen">
@@ -48,28 +41,25 @@ export default function Main({ data }: { data: any }) {
             </div>
             <div className="flex items-center space-x-2">
               <label className="text-sm font-medium" htmlFor="coordinates">
-                Coordinates:
+                Cluster size:
               </label>
               <input
                 className="bg-gray-700 text-white px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 id="coordinates"
-                placeholder="37.7749, -122.4194"
+                placeholder="10"
                 type="text"
               />
             </div>
-            <button className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md">
-              Refresh
-            </button>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
-              Toggle Layers
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+              onClick={() => mutate()}
+            >
+              Submit
             </button>
           </div>
         </div>
       </header>
-      <div className="flex-1 relative">Results: {data?.length}</div>
+      <div className="flex-1 relative">Results: {data?.cluster}</div>
     </div>
   );
-}
-function fetchEarthquakes() {
-  throw new Error("Function not implemented.");
 }
