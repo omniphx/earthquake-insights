@@ -22,7 +22,7 @@ export default function Main() {
       <header className="bg-gray-900 text-white py-4 px-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">
-            Cluster Recent Earthquakes with KMeans (min. 3 magnitude)
+            Last 30 days of earthquakes with KMeans (min. 2.5 magnitude)
           </h1>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">

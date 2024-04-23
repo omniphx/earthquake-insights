@@ -9,9 +9,8 @@ export async function GET() {
   try {
     const earthquakes = await earthquakeAPIService.getEarthquakeData();
 
-    earthquakes.forEach(async (earthquake) => {
-      service.create(earthquake);
-    });
+    await service.deleteAll();
+    await service.bulkCreate(earthquakes);
 
     return new Response(
       JSON.stringify({
