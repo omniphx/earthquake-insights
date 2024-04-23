@@ -9,13 +9,13 @@ export class EarthquakeMarkerService {
     this.databaseGateway = databaseGateway;
   }
 
-  public async generateMarkers(clusters: number) {
+  public async generateMarkers(clusterSize: number) {
     const earthquakes = await this.databaseGateway.findAll();
     const inputs = earthquakes.map((d) => [d.latitude || 0, d.longitude || 0]);
-    const kmeans = await this.clusterer.cluster(clusters, inputs);
+    const clusters = await this.clusterer.cluster(clusterSize, inputs);
 
     earthquakes.forEach(async (data, index) => {
-      const cluster = kmeans.clusters[index];
+      const cluster = clusters[index];
       data.cluster = cluster;
     });
 

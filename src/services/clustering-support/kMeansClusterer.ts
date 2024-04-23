@@ -24,6 +24,6 @@ export class KMeansClusterer implements IClusterer {
       initialization: this.getCenters(clusters, data),
     });
 
-    return result;
+    return result.clusters;
   }
 }

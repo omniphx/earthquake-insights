@@ -9,26 +9,25 @@ It will then allow you to cluster the earthquakes by a specified number and dete
 ## Getting started
 
 1. Install dependencies: `npm install`
-2. Spin up a postgres database: `docker-compose up`
-3. In a new terminal, run migration: `npx prisma migrate dev --name init`
-4. Fetch earthquakes and store in database: `npm run data:collector`
-5. Run analytics server: `npm run data:analyzer`
-6. Fetch results from server for a given latitude/longitude: `curl http://localhost:3001/api/earthquakes/cluster/10?lat=37.87&lon=-122.27`
+2. Link project with Vercel: `vercel link`
+3. Fetch environment variables: `vercel env pull .env.development.local`
+4. In a new terminal, run database migration: `npm run vercel-build`
+5. Fetch earthquakes and store in database: `curl http://localhost:3001/api/data-collector`
+6. Open app: `[npm run data:analyzer](http://localhost:3001)`
 
 TODOs
 
 1. ~Implement postgres on vercel~
 2. Unit tests
-3. Documentation (README)
 
-"B" Todos
+"B" TODOs
 
 3. Integration tests
 4. Mocks/Spies
 5. Github action for running unit tests
 6. Production monitoring
 
-"A" Todos
+"A" TODOs
 
 7. Event collaboration messaging
 8. Continuous delivery

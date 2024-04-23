@@ -60,7 +60,7 @@ export default function Main() {
             zoom: 1,
           }}
           style={{ width: "100%", height: "100%" }}
-          mapStyle="https://api.maptiler.com/maps/streets/style.json?key=lSbCSmszdnWZB1HfjEl5"
+          mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${process.env.MAPTILER_KEY}`}
         >
           {data?.earthquakeMarkers?.map((marker: EarthquakeMarkerType) => (
             <EarthquakeMarker key={marker.id} marker={marker} />

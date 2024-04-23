@@ -59,7 +59,7 @@ export type EarthquakeMarker = {
 };
 
 export interface IClusterer {
-  cluster(clusters: number, data: number[][]): KMeansResult;
+  cluster(clusters: number, data: number[][]): number[];
 }
 
 export interface IMarkerService {
