@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Map from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { EarthquakeMarker as EarthquakeMarkerType } from "../types";
@@ -9,9 +9,10 @@ import { useState } from "react";
 
 export default function Main() {
   const [clusters, setClusters] = useState(10);
-  const { data, mutate, isPending } = useMutation({
-    mutationKey: ["earthquakes"],
-    mutationFn: async () => {
+  const queryClient = useQueryClient();
+  const { data, isFetching } = useQuery({
+    queryKey: ["earthquakes"],
+    queryFn: async () => {
       const result = await fetch(`/api/data-analyzer/${clusters}`);
       return result.json();
     },
@@ -33,7 +34,7 @@ export default function Main() {
                 className="bg-gray-700 text-white px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 id="coordinates"
                 placeholder="10"
-                type="text"
+                type="number"
                 value={clusters}
                 onChange={(e) => {
                   setClusters(parseInt(e.target.value));
@@ -42,9 +43,11 @@ export default function Main() {
             </div>
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
-              onClick={() => mutate()}
+              onClick={() =>
+                queryClient.invalidateQueries({ queryKey: ["earthquakes"] })
+              }
             >
-              {isPending ? "Clusterizing..." : "Clusterize"}
+              {isFetching ? "Clusterizing..." : "Clusterize"}
             </button>
           </div>
         </div>
