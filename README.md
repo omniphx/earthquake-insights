@@ -14,3 +14,21 @@ It will then allow you to cluster the earthquakes by a specified number and dete
 4. Fetch earthquakes and store in database: `npm run data:collector`
 5. Run analytics server: `npm run data:analyzer`
 6. Fetch results from server for a given latitude/longitude: `curl http://localhost:3001/api/earthquakes/cluster/10?lat=37.87&lon=-122.27`
+
+TODOs
+
+1. Implement postgres on vercel
+2. Unit tests
+3. Documentation (README)
+
+"B" Todos
+
+3. Integration tests
+4. Mocks/Spies
+5. Github action for running unit tests
+6. Production monitoring
+
+"A" Todos
+
+7. Event collaboration messaging
+8. Continuous delivery
