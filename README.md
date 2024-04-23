@@ -18,16 +18,16 @@ It will then allow you to cluster the earthquakes by a specified number and dete
 TODOs
 
 1. ~Implement postgres on vercel~
-2. Unit tests
+2. ~Unit tests~
 
 "B" TODOs
 
 3. Integration tests
-4. Mocks/Spies
-5. Github action for running unit tests
+4. ~Mocks/Spies~
+5. ~Github action for running unit tests~
 6. Production monitoring
 
 "A" TODOs
 
 7. Event collaboration messaging
-8. Continuous delivery
+8. ~Continuous delivery~
