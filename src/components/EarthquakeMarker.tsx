@@ -1,4 +1,4 @@
-"use Client";
+"use client";
 
 import { Marker } from "react-map-gl/maplibre";
 import { EarthquakeMarker as EarthquakeMarkerType } from "../types";

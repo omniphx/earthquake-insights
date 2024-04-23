@@ -1,3 +1,6 @@
+import { Earthquake } from "@prisma/client";
+import { KMeansResult } from "ml-kmeans/lib/KMeansResult";
+
 export type EarthquakeData = {
   type: "FeatureCollection";
   features: Feature[];
@@ -54,3 +57,17 @@ export type EarthquakeMarker = {
   title: string;
   mag: number;
 };
+
+export interface IClusterer {
+  cluster(clusters: number, data: number[][]): KMeansResult;
+}
+
+export interface IMarkerService {
+  generateMarkers(clusters: number): Promise<EarthquakeMarker[]>;
+}
+
+export interface IDataGateway {
+  bulkCreate(earthquakes: Feature[]): Promise<void>;
+  deleteAll(): Promise<void>;
+  findAll(): Promise<Earthquake[]>;
+}

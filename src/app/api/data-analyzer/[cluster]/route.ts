@@ -1,37 +1,11 @@
 import { NextRequest } from "next/server";
-import { EarthquakeClusterer } from "../../../../services/earthquakeClusterer";
-import { EarthquakeDataGateway } from "../../../../services/earthquakeDataGateway";
+import { EarthquakeDataGateway } from "../../../../services/earthquakes/earthquakeDataGateway";
+import { EarthquakeMarkerService } from "../../../../services/earthquakes/earthquakeMarkerService";
+import { KMeansClusterer } from "../../../../services/clustering-support/kMeansClusterer";
 
-const clusterer = new EarthquakeClusterer();
-const service = new EarthquakeDataGateway();
-
-async function clusterEarthquakeData(clusters: number = 25) {
-  try {
-    const earthquakes = await service.findAllMinMag(2);
-
-    const inputs = earthquakes.map((d) => [d.latitude || 0, d.longitude || 0]);
-
-    const kmeans = await clusterer.cluster(clusters, inputs);
-
-    earthquakes.forEach(async (data, index) => {
-      const cluster = kmeans.clusters[index];
-      data.cluster = cluster;
-    });
-
-    const earthquakeMarkers = earthquakes.map((d) => ({
-      id: d.id,
-      latitude: d.latitude,
-      longitude: d.longitude,
-      cluster: d.cluster,
-      title: d.title,
-      mag: d.mag,
-    }));
-
-    return { kmeans, earthquakeMarkers };
-  } catch (error) {
-    console.error("Error during model pretraining: ", error);
-  }
-}
+const clusterer = new KMeansClusterer();
+const dataGateway = new EarthquakeDataGateway();
+const markerService = new EarthquakeMarkerService(clusterer, dataGateway);
 
 type Params = {
   lat: string;
@@ -42,13 +16,12 @@ type Params = {
 export async function GET(req: NextRequest, context: { params: Params }) {
   try {
     const clusterSize = parseInt(context.params.cluster);
-
-    const result = await clusterEarthquakeData(clusterSize);
+    const result = await markerService.generateMarkers(clusterSize);
 
     return new Response(
       JSON.stringify({
         status: "success",
-        earthquakeMarkers: result?.earthquakeMarkers,
+        earthquakeMarkers: result,
       }),
       {
         status: 200,

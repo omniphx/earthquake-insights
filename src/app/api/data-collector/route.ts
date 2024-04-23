@@ -1,6 +1,5 @@
-import { NextRequest } from "next/server";
-import { EarthquakeDataGateway } from "../../../services/earthquakeDataGateway";
-import { EarthquakeAPIService } from "../../../services/earthquakeAPIService";
+import { EarthquakeDataGateway } from "../../../services/earthquakes/earthquakeDataGateway";
+import { EarthquakeAPIService } from "../../../services/earthquakes/earthquakeAPIService";
 
 const earthquakeAPIService = new EarthquakeAPIService();
 const service = new EarthquakeDataGateway();

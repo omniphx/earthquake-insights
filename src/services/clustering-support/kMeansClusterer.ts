@@ -1,7 +1,8 @@
 import { kmeans } from "ml-kmeans";
+import { IClusterer } from "../../types";
 
-export class EarthquakeClusterer {
-  getCenters(n: number, data: number[][]) {
+export class KMeansClusterer implements IClusterer {
+  private getCenters(n: number, data: number[][]) {
     if (data.length < n) throw new Error("Not enough data to cluster");
 
     let centers = [];
@@ -18,7 +19,7 @@ export class EarthquakeClusterer {
     return centers;
   }
 
-  cluster(clusters: number, data: number[][]) {
+  public cluster(clusters: number, data: number[][]) {
     const result = kmeans(data, clusters, {
       initialization: this.getCenters(clusters, data),
     });

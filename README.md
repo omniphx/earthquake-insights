@@ -17,7 +17,7 @@ It will then allow you to cluster the earthquakes by a specified number and dete
 
 TODOs
 
-1. Implement postgres on vercel
+1. ~Implement postgres on vercel~
 2. Unit tests
 3. Documentation (README)
 

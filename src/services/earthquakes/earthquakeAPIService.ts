@@ -1,4 +1,4 @@
-import { EarthquakeData, Feature } from "../types";
+import { EarthquakeData, Feature } from "../../types";
 
 export class EarthquakeAPIService {
   public async getEarthquakeData(): Promise<Feature[]> {
