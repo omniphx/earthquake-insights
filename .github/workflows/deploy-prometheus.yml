@@ -18,15 +18,11 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Build container image
-        run: docker build -t registry.digitalocean.com/${{ secrets.REGISTRY_NAME }}/earthquake-insights:$(echo $GITHUB_SHA | head -c7) .
-        working-directory: ./prometheus
-
-      - name: Tag container image
-        run: docker tag ${{ secrets.REGISTRY_NAME }}/earthquake-insights:$(echo $GITHUB_SHA | head -c7) registry.digitalocean.com/${{ secrets.REGISTRY_NAME }}/earthquake-insights:$(echo $GITHUB_SHA | head -c7) .
+        run: docker build -t ${{ secrets.REGISTRY_NAME }}/earthquake-insights:$(echo $GITHUB_SHA | head -c7) .
         working-directory: ./prometheus
 
       - name: Log in to DigitalOcean Container Registry with short-lived credentials
         run: doctl registry login --expiry-seconds 1200
 
       - name: Push image to DigitalOcean Container Registry
-        run: docker push registry.digitalocean.com/${{ secrets.REGISTRY_NAME }}/earthquake-insights:$(echo $GITHUB_SHA | head -c7)
+        run: docker push ${{ secrets.REGISTRY_NAME }}/earthquake-insights:$(echo $GITHUB_SHA | head -c7)
