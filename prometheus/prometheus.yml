@@ -7,8 +7,15 @@ rule_files:
   # - "second.rules"
 
 scrape_configs:
-  - job_name: "Health check"
-    metrics_path: "/api/health-check"
+  - job_name: "Data analyzer metrics"
+    metrics_path: "/api/data-analyzer/metrics"
+    scheme: "https"
+    static_configs:
+      - targets: ["earthquake-insights-chi.vercel.app"]
+    scrape_interval: 15s
+    scrape_timeout: 15s
+  - job_name: "Data collector metrics"
+    metrics_path: "/api/data-collector/metrics"
     scheme: "https"
     static_configs:
       - targets: ["earthquake-insights-chi.vercel.app"]

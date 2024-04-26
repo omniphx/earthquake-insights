@@ -3,6 +3,7 @@ import { EarthquakeDataGateway } from "../../../../services/earthquakes/earthqua
 import { EarthquakeMarkerService } from "../../../../services/earthquakes/earthquakeMarkerService";
 import { KMeansClusterer } from "../../../../services/clustering-support/kMeansClusterer";
 import { Counter, Registry } from "prom-client";
+import { dataAnalyzerRegistry } from "../../../../services/prometheus-support/registeries";
 
 const clusterer = new KMeansClusterer();
 const dataGateway = new EarthquakeDataGateway();
@@ -13,8 +14,6 @@ type Params = {
   lon: string;
   cluster: string;
 };
-
-export const dataAnalyzerRegistry = new Registry();
 
 const counter = new Counter({
   name: "data_analyzer_name",

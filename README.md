@@ -15,6 +15,12 @@ It will then allow you to cluster the earthquakes by a specified number and dete
 5. Fetch earthquakes and store in database: `curl http://localhost:3001/api/data-collector`
 6. Open app: `[npm run data:analyzer](http://localhost:3001)`
 
+# Monitoring
+
+1. `cd prometheus`
+2. `docker build -t my-prometheus .`
+3. `docker run -p 9090:9090 my-prometheus`
+
 TODOs
 
 1. ~Implement postgres on vercel~

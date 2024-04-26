@@ -1,4 +1,4 @@
-import { dataAnalyzerRegistry } from "../[cluster]/route";
+import { dataAnalyzerRegistry } from "../../../../services/prometheus-support/registeries";
 
 export async function GET() {
   try {

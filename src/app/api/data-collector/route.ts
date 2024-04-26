@@ -1,11 +1,10 @@
 import { EarthquakeDataGateway } from "../../../services/earthquakes/earthquakeDataGateway";
 import { EarthquakeAPIService } from "../../../services/earthquakes/earthquakeAPIService";
 import { Counter, Registry } from "prom-client";
+import { dataCollectorRegistry } from "../../../services/prometheus-support/registeries";
 
 const earthquakeAPIService = new EarthquakeAPIService();
 const service = new EarthquakeDataGateway();
-
-export const dataCollectorRegistry = new Registry();
 
 const counter = new Counter({
   name: "data_collector_name",

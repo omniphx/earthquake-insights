@@ -1,4 +1,4 @@
-import { dataCollectorRegistry } from "../route";
+import { dataCollectorRegistry } from "../../../../services/prometheus-support/registeries";
 
 export async function GET() {
   try {
