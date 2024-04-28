@@ -31,6 +31,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Jest
-        run: npm test
+        run: npm test:ci
       - name: Shut down Postgres service
         run: docker-compose down
