@@ -42,8 +42,8 @@ const testRecord: Feature = {
 describe(EarthquakeDataGateway.name, () => {
   const service = new EarthquakeDataGateway();
 
-  beforeAll(() => {
-    service.deleteAll();
+  beforeAll(async () => {
+    await service.deleteAll();
   });
 
   it("should create a record", async () => {
