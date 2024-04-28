@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: earthquake-insights
-          image: <IMAGE>
+          image: earthquake-insights:test
           ports:
             - containerPort: 80
           resources:

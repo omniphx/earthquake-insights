@@ -2,7 +2,7 @@ import { EarthquakeAPIService } from "../earthquakeAPIService";
 
 global.fetch = jest.fn();
 
-describe("EarthquakeAPIService", () => {
+describe(EarthquakeAPIService.name, () => {
   it("should fetch earthquake data and return features", async () => {
     (fetch as jest.Mock).mockResolvedValue({
       json: jest.fn().mockResolvedValue({

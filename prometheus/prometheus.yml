@@ -7,6 +7,13 @@ rule_files:
   # - "second.rules"
 
 scrape_configs:
+  - job_name: "Nodejs metrics"
+    metrics_path: "/api/metrics"
+    scheme: "https"
+    static_configs:
+      - targets: ["earthquake-insights-chi.vercel.app"]
+    scrape_interval: 15s
+    scrape_timeout: 15s
   - job_name: "Data analyzer metrics"
     metrics_path: "/api/data-analyzer/metrics"
     scheme: "https"
