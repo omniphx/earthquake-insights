@@ -1,4 +1,7 @@
 name: Run Unit Tests
+env:
+  POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+  POSTGRES_URL_NON_POOLING: ${{ secrets.POSTGRES_URL_NON_POOLING }}
 
 on:
   push:
